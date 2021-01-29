@@ -1,6 +1,35 @@
 {
-  "name": "react-upload-web-worker",
-  "version": "0.0.1",
-  "main": "index.js",
-  "license": "MIT"
+    "name": "react-upload-web-worker",
+    "version": "0.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "keywords": [
+        "react upload web worker",
+        "react upload webworker",
+        "react upload worker",
+        "upload web worker react",
+        "web-worker",
+        "web worker",
+        "upload web worker"
+    ],
+    "scripts": {
+        "dev": "malta source/dev.json",
+        "wpack": "webpack"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "@babel/preset-react": "^7.12.10",
+        "babel-loader": "^8.2.2",
+        "malta": "^4.1.28",
+        "malta-dev-srv": "^1.1.7",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "webpack": "^5.19.0",
+        "webpack-cli": "^4.4.0"
+    },
+    "dependencies": {
+        "@fedeghe/channeljs": "^1.2.7",
+        "worker-loader": "^3.0.7"
+    }
 }

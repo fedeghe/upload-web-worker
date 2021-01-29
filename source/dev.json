@@ -1,0 +1,6 @@
+{
+    "EXE": [
+        "mkdir -p out"
+    ],
+    "source/index.html": "out -plugins=malta-dev-srv[folder:'out']"
+}

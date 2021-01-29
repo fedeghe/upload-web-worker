@@ -1,0 +1,1 @@
+self.requests={},self.onmessage=function(e){var a=e.data,s=e.data,l=s.id,r=s.url,t=s.file,o=s.action,i=void 0!==o&&o,d=self.requests;if(i){switch(i){case"startUpload":d[l]=upload({id:l,url:r,file:t,worker:self});break;case"abortUpload":l in d&&(d[l].xhr.abort(),d[l].xhr=null,delete d[l])}postMessage(a)}};
