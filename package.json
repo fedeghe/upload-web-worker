@@ -14,7 +14,7 @@
     ],
     "scripts": {
         "dev": "malta source/dev.json",
-        "wpack": "webpack"
+        "start": "webpack serve --open --watch"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
@@ -26,7 +26,8 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "webpack": "^5.19.0",
-        "webpack-cli": "^4.4.0"
+        "webpack-cli": "^4.4.0",
+        "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
         "@fedeghe/channeljs": "^1.2.7",
