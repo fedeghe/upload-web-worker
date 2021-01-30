@@ -10,10 +10,9 @@ const channelName = 'files'
 const channel = Channeljs.get(channelName)
 
 
-export default ({name}) => {
+export default () => {
     const [uploads, setUploads] = useState([])
     return <div>
-        <p>{name}</p>
         <input type="file" name="myfile" multiple onChange={e => {
             const files = [...e.target.files]
             const ids = files.map(file => uploader.start({
