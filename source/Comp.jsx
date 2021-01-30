@@ -28,6 +28,10 @@ export default ({name}) => {
                 onProgress: data => {
                     channel.pub(data.id, {type:'progress', progress: data.progress})
                 },
+                onAbort: data => {
+                    setUploads(old => old.filter(o => o.id !== data.id))
+                    channel.unsub(data.id);
+                },
                 onEnd: data => {
                     channel.unsub(data.id);
                     setUploads(old => {

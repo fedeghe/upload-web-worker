@@ -2,7 +2,7 @@ import Worker from 'worker-loader!./uww'
 import { uniqueID, ucFirst } from './utils'
 
 const worker = new Worker(),
-    events = ['start', 'progress', 'end', 'error'],
+    events = ['start', 'progress', 'end', 'error', 'abort'],
     uploader = {
         worker,
         queue: {},
@@ -32,7 +32,6 @@ const worker = new Worker(),
             return id;
         },
         abort: id => {
-            if (id in uploader.queue) delete uploader.queue[id];
             worker.postMessage({
                 action: 'abort-upload',
                 id
@@ -47,10 +46,17 @@ uploader.worker.onmessage = e => {
         } = e,
         eventer = `on${ucFirst(action)}`,
         upload = uploader.queue[id];
+    
     upload
     && events.includes(action)
     && upload[eventer]
     && upload[eventer](data);
+
+    if (eventer === 'onAbort' ){
+        if (id in uploader.queue) setTimeout(() => {
+            delete uploader.queue[id];
+        }, 500)
+    }
 }
 
 export default uploader

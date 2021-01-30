@@ -72,6 +72,12 @@ const upload = ({ id, url, file, worker, method, headers = {} }) => {
             },
         });
     });
+    xhr.addEventListener('abort', () => {
+        worker.postMessage({
+            action: 'abort',
+            id
+        });
+    });
     
 
     xhr.open(method, url, true);
@@ -89,5 +95,5 @@ const upload = ({ id, url, file, worker, method, headers = {} }) => {
         fileName: file.name,
     });
     
-    return xhr;
+    return { xhr };
 }
