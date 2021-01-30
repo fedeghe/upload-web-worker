@@ -1,18 +1,27 @@
 self.requests = {};
 self.onmessage = event => {
-    const {data, data: {id, url, file, action = false }} = event;
+    const {
+        data: {
+            id, url, file, method, headers,
+            action = false
+        }
+    } = event;
     const { requests } = self;
     if (!action) return;
     switch (action) {
-        case 'startUpload': 
+        case 'start-upload': 
+            post = true;
             requests[id] = upload({
                 id,
                 url,
                 file,
+                headers,
+                method, 
                 worker: self,
             });
             break;
-        case 'abortUpload':
+        case 'abort-upload':
+            post = true;
             if (id in requests) {
                 requests[id].xhr.abort();
                 requests[id].xhr = null;
@@ -22,10 +31,9 @@ self.onmessage = event => {
         default:
             break;
     }
-    postMessage(data);
 }
-const startpload = ({ id, url, file, worker }) => {
-    var xhr = new XMLHttpRequest(),
+const upload = ({ id, url, file, worker, method, headers = {} }) => {
+    const xhr = new XMLHttpRequest(),
         total = file.size,
         progress = e => {
             worker.postMessage({
@@ -33,22 +41,21 @@ const startpload = ({ id, url, file, worker }) => {
                 id,
                 fileName: file.name,
                 progress: {
-                    percent: (100 * e.loaded) / total,
+                    percent: ((100 * e.loaded) / total).toFixed(2),
                     loaded: e.loaded,
                     total,
                 },
-            })
+            });
         };
     if (xhr.upload) {
         xhr.upload.addEventListener('progress', progress);
     } else {
         xhr.addEventListener('progress', progress);
     }
-
     xhr.addEventListener('loadend', () => {
         if ( xhr.status === 200 && xhr.readyState === 4) {
             worker.postMessage({
-                action: 'done',
+                action: 'end',
                 fileName: file.name,
                 id,
             });
@@ -65,11 +72,22 @@ const startpload = ({ id, url, file, worker }) => {
             },
         });
     });
+    
 
-    xhr.open('PUT', url, true);
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
-    xhr.setRequestHeader('Access-Control-Allow-Headers', '*')
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data')
-    xhr.send(file)
-    return xhr 
+    xhr.open(method, url, true);
+
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+    Object.keys(headers).forEach(h => xhr.setRequestHeader(h, headers[h]));
+    
+    
+    xhr.send(file);
+    worker.postMessage({
+        action: 'start',
+        id,
+        fileName: file.name,
+    });
+    
+    return xhr;
 }
