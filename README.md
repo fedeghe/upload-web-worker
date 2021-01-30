@@ -3,8 +3,13 @@
 work in progress
 <br/>
 <br/>
-<br/>
-<br/>
+Raw working example: 
+
+``` bash
+> yarn && yarn start  // in the repo root, let it run
+> node index.js // in `source/srv` (upload endpoint)
+```
+the upload one or more files and check the `source/srv/uploads` folder content
 
 ---
-###### in case You are using **_webpack_** please follow the instructions [here](https://www.npmjs.com/package/worker-loader)
+##### (aborted streams are anyway partially written, but this is sompletely another story)
