@@ -6,7 +6,7 @@ const worker = new Worker(),
     uploader = {
         worker,
         queue: {},
-        start: ({file, url, headers, ...rest }) => {
+        start: ({file, url, headers, method, ...rest }) => {
             const id = `${uniqueID}`,
                 entry = {
                     id,
@@ -25,9 +25,10 @@ const worker = new Worker(),
                     } , {}))
                 };
             uploader.queue[id] = entry;
+            console.log('about to postMessage')
             worker.postMessage({
                 action: 'start-upload',
-                id, url, file, headers
+                id, url, file, method, headers
             });
             return id;
         },
@@ -40,7 +41,8 @@ const worker = new Worker(),
         },
     };
 
-worker.onMessage = e => {
+uploader.worker.onmessage = e => {
+    console.log(e)
     const {
             data,
             data: {id, action}
@@ -49,7 +51,7 @@ worker.onMessage = e => {
         upload = uploader.queue[id];
     upload
     && events.includes(action)
-    && eventer in upload
+    && upload[eventer]
     && upload[eventer](data);
 }
 
