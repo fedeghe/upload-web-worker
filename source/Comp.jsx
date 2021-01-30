@@ -29,6 +29,7 @@ export default ({name}) => {
                     channel.pub(data.id, {type:'progress', progress: data.progress})
                 },
                 onEnd: data => {
+                    channel.unsub(data.id);
                     setUploads(old => {
                         return old.map(upload => {
                             return upload.id === data.id

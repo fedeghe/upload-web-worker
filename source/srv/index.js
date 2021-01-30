@@ -80,7 +80,6 @@ app.post('/upload', async (req, res) => {
             });
         } else {
             let data = []; 
-            console.log(req.files)
     
             //loop all files
             Object.values(req.files).forEach(file => {

@@ -25,7 +25,6 @@ const worker = new Worker(),
                     } , {}))
                 };
             uploader.queue[id] = entry;
-            console.log('about to postMessage')
             worker.postMessage({
                 action: 'start-upload',
                 id, url, file, method, headers
@@ -42,7 +41,6 @@ const worker = new Worker(),
     };
 
 uploader.worker.onmessage = e => {
-    console.log(e)
     const {
             data,
             data: {id, action}
