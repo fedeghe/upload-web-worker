@@ -8,15 +8,15 @@ const fs = require('fs');
 const _ = require('lodash');
 
 const app = express();
-const speedLimiter = slowDown({
-    delayMs: 1000
-  });
+// const speedLimiter = slowDown({
+//     delayMs: 1000
+// });
 
 // enable files upload
 app.use(fileUpload({
     createParentPath: true
 }));
-app.use(speedLimiter);
+// app.use(speedLimiter);
 
 //add other middleware
 app.use(cors());
