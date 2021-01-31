@@ -1,7 +1,7 @@
 {
     "name": "react-upload-web-worker",
     "version": "0.0.1",
-    "main": "index.js",
+    "main": "dist/index.bundle.js",
     "license": "MIT",
     "keywords": [
         "react upload web worker",
@@ -14,17 +14,22 @@
     ],
     "scripts": {
         "dev": "malta source/dev.json",
-        "start": "webpack serve --open --watch"
+        "start": "webpack serve --open",
+        "build": "webpack"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
         "@babel/preset-env": "^7.12.11",
         "@babel/preset-react": "^7.12.10",
         "babel-loader": "^8.2.2",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^5.0.1",
+        "html-webpack-plugin": "^4.5.1",
         "malta": "^4.1.28",
         "malta-dev-srv": "^1.1.7",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "style-loader": "^2.0.0",
         "webpack": "^5.19.0",
         "webpack-cli": "^4.4.0",
         "webpack-dev-server": "^3.11.2"

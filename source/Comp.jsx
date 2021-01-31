@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Channeljs from '@fedeghe/channeljs'
 import { uniqueID } from './utils'
-import uploader from './uploader'
+import uploader from './uploader5'
 import UploadingProgress from './UploadingProgress'
 
 
