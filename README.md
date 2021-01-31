@@ -1,6 +1,6 @@
 # react-upload-web-worker
 
-work in progress
+work in progress 🙇‍♂️
 <br/>
 <br/>
 Raw working example: 
