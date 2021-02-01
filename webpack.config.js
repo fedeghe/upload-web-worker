@@ -6,7 +6,7 @@ module.exports = {
   entry: {
       index: path.resolve(__dirname, './source/index.js'),
   },
-  devtool: 'inline-source-map',
+//   devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
@@ -41,6 +41,6 @@ module.exports = {
     hot:true,
     host: 'localhost',
   },
-  mode: 'development',
+  mode: 'production',
   watch: true
 };
