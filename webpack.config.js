@@ -6,12 +6,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   entry: {
       index: path.resolve(__dirname, './source/index.js'),
-    //   index: path.resolve(__dirname, './source/uploader.js'),  FOR DIST
+    //   index: path.resolve(__dirname, './source/uploader.js'),  FOR DIST, move to webpack.prod.config.js
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
-    libraryTarget: "commonjs-module"
+    // libraryTarget: "commonjs-module" // FOR DIST, move to webpack.prod.config.js
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()],
