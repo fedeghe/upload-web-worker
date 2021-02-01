@@ -5,7 +5,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
  
 module.exports = {
   entry: {
-      index: path.resolve(__dirname, './source/uploader.js'),
+      index: path.resolve(__dirname, './source/index.js'),
+    //   index: path.resolve(__dirname, './source/uploader.js'),  FOR DIST
   },
   output: {
     path: path.resolve(__dirname, './dist'),
