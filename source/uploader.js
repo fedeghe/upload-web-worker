@@ -162,4 +162,4 @@ uploader.worker.onmessage = e => {
     }
 }
 
-export default { uploader}
+export default uploader

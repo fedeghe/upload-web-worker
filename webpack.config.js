@@ -1,10 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
  
 module.exports = {
   entry: {
-      index: path.resolve(__dirname, './source/index.js'),
+      index: path.resolve(__dirname, './source/uploader.js'),
+  },
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.js',
+    libraryTarget: "commonjs-module"
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
   },
 //   devtool: 'inline-source-map',
   plugins: [
@@ -30,10 +39,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js'
-  },
+
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     compress: true,
