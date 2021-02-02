@@ -66,7 +66,7 @@ with the exception of `onProgress` which additionally receives **inside** `data`
 where
 - percent: the progress percentage with two decimals
 - loaded: amount of Bytes already loaded
-- total: total amount of Bytes of ther uploading file
+- total: total amount of Bytes of the uploading file
 ## Aborting
 
 _react-upload-web-worker_ offert **two** methods, one is `start` as we saw above, it returns an _id_ for this upload (the same value that is passed to the listeners).  
@@ -82,7 +82,7 @@ ruww.abort("UWW_1") // and this will trigger the onAbort if set
 
 ## Minimal working example *
 
-In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading statup for all the uploading files.
+In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading status for all the uploading files.
 
 Start a minimal local server which exposes a PUT enpoint on  `http://localhost:3000/upload`  
  ```
