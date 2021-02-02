@@ -37,20 +37,29 @@ export default () => <input
 All the `onXXXX` listeners receive a `data` object which has always at least the following fields:
 ``` json
 {
-    id: "UWW_1",        // a unique id associated with this upload
-    action: "start",    // the action
-    fileName: "2019_100_00000_F24ESEG_mpdf.pdf" // it's clear
+    "id": "UWW_1",
+    "action": "start",
+    "fileName": "2019_100_00000_F24ESEG_mpdf.pdf"
 }
 ```
+where
+- id: a unique id associated with this upload
+- action: the action
+- fileName: the upload file name, clearly
+
 with the exception of `onProgress` which additionally receives **inside** `data` also a `progress` field as follows:
 
 ``` json
-progress: {
-    percent: 4.84,   // the progress percentage with two decimals
-    loaded: 9601024, // amount of Bytes already loaded
-    total: 198546361 // total amount of Bytes of ther uploading file
+"progress": {
+    "percent": 4.84,
+    "loaded": 9601024,
+    "total": 198546361 
 }
 ```
+where
+- percent: the progress percentage with two decimals
+- loaded: amount of Bytes already loaded
+- total: total amount of Bytes of ther uploading file
 ## Aborting
 
 _react-upload-web-worker_ offert **two** methods, one is `start` as we saw above, it returns an _id_ for this upload (the same value that is passed to the listeners).  
