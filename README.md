@@ -31,7 +31,7 @@ export default () => <input
     }}
 >
 ```
-**No request headers are send by default, thus you will have to provide them**  
+**No request headers are sent by default, thus you will have to provide them**  
 
 ## Listeners 
 All the `onXXXX` listeners receive a `data` object which has always at least the following fields:
