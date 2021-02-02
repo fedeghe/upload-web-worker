@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 
 const app = express();
@@ -28,45 +29,12 @@ const port = process.env.PORT || 3000;
 
 app.put('/upload', async (req, res) => {
     const fileName = req.query.fileName
-    req.pipe(fs.createWriteStream(`uploads/${fileName}`)).on('finish', () => res.sendStatus(200))
-    /*
-    try {
-        if(!req.files) {
-            console.log('No file uploaded')
-            res.send({
-                status: false,
-                message: 'No file uploaded'
-            });
-        } else {
-            let data = []; 
-            console.log(req.files)
-    
-            //loop all files
-            _.forEach(_.keysIn(req.files.photos), (key) => {
-                let photo = req.files.photos[key];
-                
-                //move photo to uploads directory
-                photo.mv('./uploads/' + photo.name);
-
-                //push file details
-                data.push({
-                    name: photo.name,
-                    mimetype: photo.mimetype,
-                    size: photo.size
-                });
-            });
-    
-            //return response
-            res.send({
-                status: true,
-                message: 'Files are uploaded',
-                data: data
-            });
-        }
-    } catch (err) {
-        res.status(500).send(err);
-    }
-    */
+    req.pipe(
+        fs.createWriteStream(path.resolve(`${__dirname}/uploads/${fileName}`))
+    ).on(
+        'finish',
+        () => res.sendStatus(200)
+    )
 });
 
 app.post('/upload', async (req, res) => {
@@ -79,7 +47,6 @@ app.post('/upload', async (req, res) => {
             });
         } else {
             let data = []; 
-    
             Object.values(req.files).forEach(file => {
                 file.mv('./uploads/' + file.name);
                 data.push({
