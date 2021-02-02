@@ -2,6 +2,13 @@
 
 Using a web worker to upload a file **could not be easier**: 
 
+Install dependency
+
+```
+yarn add react-upload-web-worker
+```
+use it
+
 ``` jsx
 import ruww from 'react-upload-web-worker'
 
@@ -34,7 +41,7 @@ export default () => <input
 **No request headers are sent by default, thus you will have to provide them**  
 
 ## Listeners 
-All the `onXXXX` listeners receive a `data` object which has always at least the following fields:
+All the `onXXX` listeners receive a `data` object which has always at least the following fields:
 ``` json
 {
     "id": "UWW_1",
