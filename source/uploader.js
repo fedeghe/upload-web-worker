@@ -101,7 +101,7 @@ const upload = ({ id, url, file, worker, method, headers = {} }) => {
     return { xhr };
 }`;
 
-const onelinedUww = uww.replace(/\n|\s{2}/gm, ' ')
+const onelinedUww = uww.replace(/\n|\s{2,}/gm, ' ')
 const bb = new Blob([onelinedUww], {type: 'text/javascript'}),
     ourUrl = window.webkitURL || window.URL,
     worker = new Worker(ourUrl.createObjectURL(bb)),

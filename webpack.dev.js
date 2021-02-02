@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
  
 module.exports = {
   entry: {
@@ -13,10 +12,7 @@ module.exports = {
     filename: '[name].bundle.js',
     // libraryTarget: "commonjs-module" // FOR DIST, move to webpack.prod.config.js
   },
-  optimization: {
-    minimizer: [new UglifyJsPlugin()],
-  },
-//   devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
@@ -48,6 +44,6 @@ module.exports = {
     hot:true,
     host: 'localhost',
   },
-  mode: 'production',
+  mode: 'development',
   watch: true
 };

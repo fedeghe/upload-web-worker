@@ -13,9 +13,8 @@
         "upload web worker"
     ],
     "scripts": {
-        "dev": "malta source/dev.json",
-        "start": "webpack serve --open",
-        "build": "webpack"
+        "start": "webpack serve --open --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
@@ -33,10 +32,7 @@
         "uglifyjs-webpack-plugin": "^2.2.0",
         "webpack": "^5.19.0",
         "webpack-cli": "^4.4.0",
-        "webpack-dev-server": "^3.11.2"
-    },
-    "dependencies": {
-        "@fedeghe/channeljs": "^1.2.7",
-        "worker-loader": "^3.0.7"
+        "webpack-dev-server": "^3.11.2",
+        "@fedeghe/channeljs": "^1.2.7"
     }
 }
