@@ -2,7 +2,7 @@ self.requests = {};
 self.onmessage = event => {
     const {
         data: {
-            id, url, file, method, headers,
+            id, url, file, method = 'PUT', headers = {},
             action = false
         }
     } = event;
@@ -32,7 +32,7 @@ self.onmessage = event => {
             break;
     }
 }
-const upload = ({ id, url, file, worker, method, headers = {} }) => {
+const upload = ({ id, url, file, worker, method, headers }) => {
     const xhr = new XMLHttpRequest(),
         total = file.size,
         progress = e => {
@@ -41,7 +41,7 @@ const upload = ({ id, url, file, worker, method, headers = {} }) => {
                 id,
                 fileName: file.name,
                 progress: {
-                    percent: ((100 * e.loaded) / total).toFixed(2),
+                    percent: parseFloat(((100 * e.loaded) / total).toFixed(2), 10),
                     loaded: e.loaded,
                     total,
                 },
@@ -62,36 +62,32 @@ const upload = ({ id, url, file, worker, method, headers = {} }) => {
         }
     });
 
-    xhr.addEventListener('error', () => {
-        worker.postMessage({
+    xhr.addEventListener('error',
+        () => worker.postMessage({
             action: 'error',
             id,
             fileName: file.name,
             data: {
                 status: xhr.status,
             },
-        });
-    });
-    xhr.addEventListener('abort', () => {
-        worker.postMessage({
+        })
+    );
+    xhr.addEventListener('abort',
+        () => worker.postMessage({
             action: 'abort',
             id
-        });
-    });
-    
+        })
+    );
 
     xhr.open(method, url, true);
-
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
     xhr.setRequestHeader('Content-Type', 'multipart/form-data');
     Object.keys(headers).forEach(h => xhr.setRequestHeader(h, headers[h]));
-    
-    
     xhr.send(file);
     worker.postMessage({
-        action: 'start',
         id,
+        action: 'start',
         fileName: file.name,
     });
     

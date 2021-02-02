@@ -18,13 +18,12 @@ app.use(fileUpload({
 }));
 // app.use(speedLimiter);
 
-//add other middleware
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-//start app 
 const port = process.env.PORT || 3000;
 
 app.put('/upload', async (req, res) => {
@@ -81,21 +80,14 @@ app.post('/upload', async (req, res) => {
         } else {
             let data = []; 
     
-            //loop all files
             Object.values(req.files).forEach(file => {
-                
-                //move photo to uploads directory
                 file.mv('./uploads/' + file.name);
-
-                //push file details
                 data.push({
                     name: file.name,
                     mimetype: file.mimetype,
                     size: file.size
                 });
             })
-    
-            //return response
             res.send({
                 status: true,
                 message: 'Files are uploaded',
@@ -109,6 +101,6 @@ app.post('/upload', async (req, res) => {
 
 
 app.listen(port, () =>
-    console.log(`App is listening on port ${port}.`)
+    console.log(`Upload e.p. is listening on port ${port}.`)
 );
 
