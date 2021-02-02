@@ -80,9 +80,6 @@ const upload = ({ id, url, file, worker, method, headers }) => {
     );
 
     xhr.open(method, url, true);
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
     Object.keys(headers).forEach(h => xhr.setRequestHeader(h, headers[h]));
     xhr.send(file);
     worker.postMessage({
