@@ -2,3 +2,13 @@ body{
     font-family:'verdana';
     background-color: #038dff;
 }
+.done {
+    color:black;
+}
+.uploading {
+    color:white
+}
+.abort {
+    color:red;
+    margin-left: 10px;
+}

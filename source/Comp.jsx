@@ -19,16 +19,20 @@ export default () => {
                 method:'PUT',
                 file,
                 url: `${url}?fileName=${file.name}`,
-                onStart: data => {
-                    setUploads(old => {
-                        return [...old, data]
-                    })
-                },
+                onStart: data => setUploads(old => [...old, data]),
                 onProgress: data => {
                     channel.pub(data.id, {type:'progress', progress: data.progress})
                 },
                 onAbort: data => {
-                    setUploads(old => old.filter(o => o.id !== data.id))
+                    // setUploads(old => old.filter(o => o.id !== data.id))
+                    setUploads(olds => {
+                        return olds.map(old => {
+                            if (old.id === data.id){
+                                old.aborted = true
+                            }
+                            return old
+                        })
+                    })
                     channel.unsub(data.id);
                 },
                 onEnd: data => {
@@ -47,7 +51,6 @@ export default () => {
             <ul>
                 {uploads.map(
                     upload => <li key={`${uniqueID}`}>
-                        <p>{upload.fileName}</p>
                         <UploadingProgress upload={upload}/>
                     </li>
                 )}
