@@ -28,7 +28,7 @@ export default ({upload = {}}) => {
                 uploading {upload.fileName}
                 <progress max="100" value={percent}/>
                 <span> {percent}% </span>
-                <span class="abort" onClick={() => uploader.abort(upload.id)}>abort now</span>
+                <span className="abort" onClick={() => uploader.abort(upload.id)}>abort now</span>
             </div>
         : <div className="done"> {upload.fileName} ✅ </div>
             
