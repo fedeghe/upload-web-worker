@@ -1,15 +1,84 @@
 # react-upload-web-worker
 
-work in progress 🙇‍♂️
-<br/>
-<br/>
-Raw working example: 
+Using a web worker to upload a file **could not be easier**: 
 
-``` bash
-> yarn && yarn start  // in the repo root, let it run
-> node index.js // in `source/srv` (upload endpoint)
+``` jsx
+import ruww from 'react-upload-web-worker'
+
+export default () => <input
+    type="file"
+    multiple
+    onChange={e => {
+        const files = [...e.target.files]
+        const ids = files.map(file => ruww.start({
+            method: 'PUT'
+            // PUT is the default,
+            // and the moment is THE ONLY one supported,
+            // thus you can skip that; also expect the
+            // upload to not work if u use others 
+            file,
+            url: 'YOUR_UPLOAD_URL',
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Headers' :'*',
+                'Content-Type': 'multipart/form-data'
+            },
+            onStart: data => { /* ... */},
+            onProgress: data => { /* ... + progress data */},
+            onAbort: data => { /* ... */},
+            onEnd: data => { /* ... */},
+        }))
+    }}
+>
 ```
-now upload one or more files and check the `source/srv/uploads` folder content
+**No request headers are send by default, thus you will have to provide them**  
+
+## Listeners 
+All the `onXXXX` listeners receive a `data` object which has always at least the following fields:
+``` json
+{
+    id: "UWW_1",        // a unique id associated with this upload
+    action: "start",    // the action
+    fileName: "2019_100_00000_F24ESEG_mpdf.pdf" // it's clear
+}
+```
+with the exception of `onProgress` which additionally receives **inside** `data` also a `progress` field as follows:
+
+``` json
+progress: {
+    percent: 4.84,   // the progress percentage with two decimals
+    loaded: 9601024, // amount of Bytes already loaded
+    total: 198546361 // total amount of Bytes of ther uploading file
+}
+```
+## Aborting
+
+_react-upload-web-worker_ offert **two** methods, one is `start` as we saw above, it returns an _id_ for this upload (the same value that is passed to the listeners).  
+
+Using the `id` returned by `start` we can invoke `abort` passing this `id`:
+
+``` js
+ruww.abort("UWW_1") // and this will trigger the onAbort if set
+```
 
 ---
-##### (aborted streams are anyway partially written, but this is sompletely another story)
+
+
+## Minimal working example *
+
+In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading statup for all the uploading files.
+
+Start a minimal local server which exposes a PUT enpoint on  `http://localhost:3000/upload`  
+ ```
+ node source/srv/index.js
+ ```
+and let it run, then in another terminal tab
+```
+yarn & yarn start
+```
+
+now upload one or more files and check the `source/srv/uploads` folder content. **
+
+---
+##### * requires a clone from github
+##### ** aborted streams are anyway partially written, but this is sompletely another story
