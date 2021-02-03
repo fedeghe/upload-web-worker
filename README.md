@@ -10,14 +10,14 @@ yarn add upload-web-worker
 use it
 
 ``` jsx
-import ruww from 'react-upload-web-worker'
+import uww from 'upload-web-worker'
 
 export default () => <input
     type="file"
     multiple
     onChange={e => {
         const files = [...e.target.files]
-        const ids = files.map(file => ruww.start({
+        const ids = files.map(file => uww.start({
             method: 'PUT'
             // PUT is the default,
             // and the moment is THE ONLY one supported,
