@@ -1,4 +1,3 @@
-// import Worker from 'worker-loader!./uww'
 import { uniqueID, ucFirst } from './utils'
 
 const uww = `self.requests = {};

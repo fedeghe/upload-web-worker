@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Channeljs from '@fedeghe/channeljs'
 import uploader from './uploader'
-// import './style.css'
 
 export default ({upload = {}}) => {
     const [percent, setPercent] = useState(upload.percent || 0)
