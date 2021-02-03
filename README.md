@@ -74,7 +74,7 @@ _react-upload-web-worker_ offert **two** methods, one is `start` as we saw above
 Using the `id` returned by `start` we can invoke `abort` passing this `id`:
 
 ``` js
-ruww.abort("UWW_1") // and this will trigger the onAbort if set
+uww.abort("UWW_1") // and this will trigger the onAbort if set
 ```
 
 ---
@@ -82,7 +82,7 @@ ruww.abort("UWW_1") // and this will trigger the onAbort if set
 
 ## Minimal working example *
 
-In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading status for all the uploading files.
+In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading status for all the uploading files. In this example I'm using React.
 
 Start a minimal local server which exposes a PUT enpoint on  `http://localhost:3000/upload`  
  ```
