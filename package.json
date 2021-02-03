@@ -1,25 +1,26 @@
 {
     "name": "react-upload-web-worker",
     "description": "Use a web worker to upload files in a snap in your React app",
-    "version": "0.0.5",
+    "version": "0.0.1",
     "main": "dist/index.bundle.js",
     "license": "MIT",
     "author": "Federico Ghedina <fedeghe@gmail.com>",
     "repository": {
         "type": "git",
-        "url": "https://fedeghe@github.com/fedeghe/react-upload-web-worker.git"
+        "url": "https://fedeghe@github.com/fedeghe/upload-web-worker.git"
     },
     "bugs": {
-        "url": "https://github.com/fedeghe/react-upload-web-worker/issues"
+        "url": "https://github.com/fedeghe/upload-web-worker/issues"
     },
     "keywords": [
+        "upload web worker react",
+        "web worker",
+        "react web worker uploader",
+        "web worker uploader ",
+        "upload web worker",
         "react upload web worker",
         "react upload webworker",
-        "react upload worker",
-        "upload web worker react",
-        "web-worker",
-        "web worker",
-        "upload web worker"
+        "react upload worker"
     ],
     "scripts": {
         "start": "webpack serve --open --config webpack.dev.js",

@@ -1,11 +1,11 @@
-# react-upload-web-worker
+# upload-web-worker
 
 Using a web worker to upload a file **could not be easier**: 
 
 Install dependency
 
 ```
-yarn add react-upload-web-worker
+yarn add upload-web-worker
 ```
 use it
 

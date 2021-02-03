@@ -3160,16 +3160,6 @@ make-dir@^3.0.2, make-dir@^3.1.0:
   dependencies:
     semver "^6.0.0"
 
-malta-dev-srv@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/malta-dev-srv/-/malta-dev-srv-1.1.7.tgz#eb2220cc0813acb7454df09646853f5556ef5e22"
-  integrity sha512-piqBphgHdIzndyBP1H45GeGlRMhx5T4v7chGjF+UgtWU+e1qYDm5SBX9osBWnsPTLYc8lSOe1b2ljJmpgrYuWw==
-
-malta@^4.1.28:
-  version "4.1.28"
-  resolved "https://registry.yarnpkg.com/malta/-/malta-4.1.28.tgz#8256257d107bf482184b3d1aa5298c84764b9497"
-  integrity sha512-WS2KL+KTPZxjipARQ6tgMJKuO4LPFNzZjJd9s5Ga9GJ6EEvVVZIZcyZf5WNIe8ammSMcxwSPwut2ywpki66bvQ==
-
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
