@@ -18,6 +18,11 @@ export default () => {
             const ids = files.map(file => uploader.start({
                 method:'PUT',
                 file,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Content-Type': 'multipart/form-data'
+                },
                 url: `${url}?fileName=${file.name}`,
                 onStart: data => setUploads(old => [...old, data]),
                 onProgress: data => channel.pub(
