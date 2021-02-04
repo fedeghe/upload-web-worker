@@ -69,7 +69,7 @@ where
 - total: total amount of Bytes of the uploading file
 ## Aborting
 
-_react-upload-web-worker_ offert **two** methods, one is `start` as we saw above, it returns an _id_ for this upload (the same value that is passed to the listeners).  
+_upload-web-worker_ offert **two** methods, one is `start` as we saw above, it returns an _id_ for this upload (the same value that is passed to the listeners).  
 
 Using the `id` returned by `start` we can invoke `abort` passing this `id`:
 
