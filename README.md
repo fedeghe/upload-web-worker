@@ -86,9 +86,11 @@ In case you cloned this repo you can start a minimal example, which also shows a
 
 Start a minimal local server which exposes a PUT enpoint on  `http://localhost:3000/upload`  
  ```
- node source/srv/index.js
+ cd source/srv
+ yarn
+ node index.js
  ```
-and let it run, then in another terminal tab
+and let it run, then in another terminal tab, in the repo root
 ```
 yarn & yarn start
 ```
