@@ -99,4 +99,4 @@ now upload one or more files and check the `source/srv/uploads` folder content. 
 
 ---
 ##### * requires a clone from github
-##### ** aborted streams are anyway partially written, but this is sompletely another story
+##### ** aborted streams are anyway partially written, but this is completely another story
