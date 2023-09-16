@@ -16,25 +16,32 @@ export default () => <input
     type="file"
     multiple
     onChange={e => {
-        const files = [...e.target.files]
-        const ids = files.map(file => uww.start({
-            method: 'PUT'
-            // PUT is the default,
-            // and the moment is THE ONLY one supported,
-            // thus you can skip that; also expect the
-            // upload to not work if u use others 
-            file,
-            url: 'YOUR_UPLOAD_URL',
-            headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Headers' :'*',
-                'Content-Type': 'multipart/form-data'
-            },
-            onStart: data => { /* ... */},
-            onProgress: data => { /* ... + progress data */},
-            onAbort: data => { /* ... */},
-            onEnd: data => { /* ... */},
-        }))
+        [...e.target.files].map(
+            file => uww.start({
+                // method: 'PUT' // default
+                /**
+                 * PUT is the default, and actually
+                 * the right verb
+                 * 
+                 * at the moment is THE ONLY one supported,
+                 * thus you can skip that;
+                 * 
+                 * DO NOT expect the upload to work
+                 * when setting a different verb 
+                 */
+                file,
+                url: 'YOUR_UPLOAD_URL',
+                headers: {
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Headers' :'*',
+                    'Content-Type': 'multipart/form-data'
+                },
+                onStart: data => { /* ... */},
+                onProgress: data => { /* ... + progress data */},
+                onAbort: data => { /* ... */},
+                onEnd: data => { /* ... */},
+            })
+        )
     }}
 >
 ```
