@@ -38,12 +38,11 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: path.resolve(__dirname, './dist'),
     compress: true,
     port: 9000,
     hot:true,
     host: 'localhost',
   },
   mode: 'development',
-  watch: true
 };
