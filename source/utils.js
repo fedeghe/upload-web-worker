@@ -8,4 +8,12 @@ export const uniqueID = new function () {
     };
 };
 
+export const getFuncBody = func => {
+    const fstring = func.toString()
+    return fstring.substring(
+      fstring.indexOf("{") + 1,
+      fstring.lastIndexOf("}")
+    )
+  }
+
 export const ucFirst = s => s.charAt(0).toUpperCase() + s.slice(1)
