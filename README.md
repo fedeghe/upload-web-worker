@@ -16,7 +16,7 @@ export default () => <input
     type="file"
     multiple
     onChange={e => {
-        [...e.target.files].map(
+        [...e.target.files].forEach(
             file => uww.start({
                 // method: 'PUT' // default
                 /**
@@ -89,7 +89,7 @@ uww.abort("UWW_1") // and this will trigger the onAbort if set
 
 ## Minimal working example *
 
-In case you cloned this repo you can start a minimal example, which also shows a possible simple way to show the uploading status for all the uploading files. In this example I'm using React.
+In case you cloned this [repo](https://github.com/fedeghe/upload-web-worker) you can start a minimal example, which also shows a possible simple way to show the uploading status for all the uploading files. In this example I'm using React.
 
 Start a minimal local server which exposes a PUT enpoint on  `http://localhost:3000/upload`  
  ```
