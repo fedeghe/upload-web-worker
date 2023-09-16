@@ -1,7 +1,7 @@
 {
     "name": "@fedeghe/upload-web-worker",
     "description": "Use a web worker to upload files in a snap in your React app",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "dist/index.bundle.js",
     "license": "MIT",
     "author": "Federico Ghedina <fedeghe@gmail.com>",
